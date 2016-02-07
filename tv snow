@@ -1,0 +1,28 @@
+float dim = 4;
+float dx = 4;
+float dy = 4;
+ 
+void setup(){
+  size(640, 600);
+  background(0);
+  noStroke();
+  frameRate(32);
+}
+void draw(){
+  throwBnWTVNOISE();
+}
+ 
+void throwBnWTVNOISE(){
+  for(int i = 0; i < 160; i++){
+  pushMatrix();
+  for(int j = 0; j < 150; j++){
+       fill(random(255));
+       translate(0, dy);
+       ellipse(0, 0, dim, dim);
+       pushMatrix();
+       popMatrix();
+  }
+  popMatrix();
+  translate(dx, 0);
+  }//end outer for loop
+}//end trgg
