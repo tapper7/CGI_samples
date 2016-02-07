@@ -1,0 +1,44 @@
+#I see plenty of commercial value for a simple algorithm like this, to light up a pool or a marquee - see the design docs in the code.
+IP!!! IP IP IP IP!!! plz contact me if you wish to use this for other than educational purposes.
+
+/*The BRS renders adjacent tiles alternate along a "cool color" range w/o getting too dark.
+Last Stable Build at Self-Similarity Studios, Los Angeles. 8/30/2015
+Tools-Processing v2.2.1 & Java 1.8. OS-win8.1, Hardware-HP 15.
+author--Chris Welke, visit me for music, prose, art, logic, bad jokes and of course code
+at Tapper7.com -- information is free and NOTHING is for sale.
+The Background Radiation Simulator v0 is intellectual property of Self-Similarity Studios,
+please obtain permission for reproduction- thx*/
+ 
+float sz = 12;
+ 
+void setup(){
+  size(640, 600);
+  background(0);
+  frameRate(32);
+}//end setup
+ 
+void draw(){
+  throwRandomCoolGrid();
+  if(mousePressed == true){//graphical dy/dx effect....
+    sz*=1.4;               //zoom
+    frameRate(2);          //slow down
+    noStroke();            //kill grid marks
+  }//endIF & mouse effect
+}//end draw
+ 
+void throwRandomCoolGrid(){//calc. & render cool noise
+  for(int i = 0; i < 130; i++){
+     rect(0, 0, sz, sz);
+     pushMatrix();
+     for(int j = 0;j < 122; j++){
+       fill(random(0), random(100, 220), random(150, 255));
+       translate(0, sz);
+       rect(0, 0, sz, sz);
+       pushMatrix();
+       popMatrix();
+      }//end inner for
+  popMatrix();
+  translate(sz, 0);
+  }//end outer for
+}//end tRCG
+//end BRSv0
