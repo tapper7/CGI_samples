@@ -1,5 +1,6 @@
 # CGI_samples
 <b> sample one: droppin' lerpy balls</b>
+<code>
 /*Algorithm by cwelke @Tapper7.com for Self-Similarity Studios
 Last stable build: using Processing API, JDK 1.8, win8.1 5/26/15
 Dist under The GNU Public License - compliant with ANSI/ISO std.*/
@@ -35,3 +36,4 @@ void selfS(float x, float y, float sz){
       selfS(nx, ny, sz*rec);
    }//endIF
 }//end selfS
+</code>
