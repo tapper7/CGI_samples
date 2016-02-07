@@ -1,0 +1,44 @@
+#the program "they" said couldn't be executed
+
+Careful placement of popMatrix() inside the nested-for-loop makes this very much possible -- avoiding a dreaded "stackoverflow"
+#the most coordinate-matrices we can place on the stack is 30...it never goes above, in the next example we'll prove it
+by emulating "tv snow" ps- you need a java sdk and a Processing ide to try out these codez....
+
+/*Variation 3 of "random color noise grids" these are warm
+The goal is to emulate the glitz of a Hollywood/Vegas Marquee'
+Last Stable Build: 8/2015 @SSStudios & Tapper7.com
+Processing 2.2.1, Java 1.8, win8.1, your browser and my HP 15
+laptop did/do the heavy-lifting in all of these random grid samples
+by Chris Welke*/
+ 
+float dim = 16;
+float dx = 16;
+float dy = 16;
+ 
+void setup(){
+  size(640, 600);
+  background(0);
+  frameRate(16);
+  stroke(#000000);
+}
+void draw(){
+  throwWarmNOISE();
+  if(mousePressed == true){
+    frameRate(4);} //slow down the noise
+}
+ 
+void throwWarmNOISE(){
+  for(int i = 0; i < 130; i++){
+  ellipse(0, 0, dim, dim);
+  pushMatrix();
+  for(int j = 0;j < 122; j++){
+       fill(random(180, 255), random(120, 255), 0);
+       translate(0, dy);
+       ellipse(0, 0, dim, dim);
+       pushMatrix();
+       popMatrix();
+  }
+  popMatrix();
+  translate(dx, 0);
+  }//end outer for loop
+}//end trgg
