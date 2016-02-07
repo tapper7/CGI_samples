@@ -1,0 +1,28 @@
+/**
+ * display user defined strings
+ * The text() function is used for writing words to the screen.
+ * The letters can be aligned left, center, or right with the 
+ * textAlign() function. 
+ */
+  
+PFont f;
+float dy = 100.0;
+float dx = 10.0;
+void setup() {
+  size(640, 640);
+  // Create the font
+  printArray(PFont.list());
+  f = createFont("ZapfDingbatsITC", 36);
+  textFont(f);
+}
+void draw() {
+  background(0);
+  drawType(dx, dy);
+  dy = dy + 12;//drops the defined text
+}
+void drawType(float x, float y) {
+  //text("ichiknees", x, y);
+  text("nigger", x, y);//or some other offensive placeholder string
+  //text("sans yer moms box", x, y);
+  //text("shit cum fuk tart", x, y);
+}
