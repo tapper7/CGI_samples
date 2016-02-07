@@ -1,0 +1,103 @@
+/*an implementation/qa-test of a circle class "Ball"
+it dynamically allocates "balls" and drops
+them from the CG origin (0,0) == the
+upper-left of the frame, not the ctr.
+The balls cascade from L to R and
+lerp to other cool colors using "random" floats
+For informational & educational purposes
+Last Stable Build @SSStudios, Los Angeles &c 2015
+Created in Processing 3.0 extends JDK 1.8*/
+  
+ArrayList myBallz;
+void setup(){
+ background(0);//K
+  size(600,600);
+  smooth();
+  frameRate(12);
+  myBallz = new ArrayList();
+  Ball myBall = new Ball(0,0);
+  myBallz.add(myBall);
+}//end setup
+  
+void draw(){
+  Ball newBall = new Ball(0,0);
+  myBallz.add(newBall);
+  for(int i = 0; i < myBallz.size(); i++){
+  Ball myBallv0 = (Ball)myBallz.get(i);
+  myBallv0.run();
+  }//end fr
+}//end draw
+  
+//coder's note: to run p.js mode, uninstall v3, js mode is a WIP
+class Ball{
+  float x=0;
+  float y=0;
+  float speedInX = random(0,1);
+  float speedInY = random(0,1);
+  int numFrames = 0;
+  float aesthetic_random = 19.0;
+  float SZ=8;
+    
+  //constructor
+  Ball(float _x, float _y){
+    x = _x;
+    y = _y;
+  }
+  //fxns&methods
+  void printred(){//pseudo-red
+    noStroke();
+    fill(200,0,100);
+    ellipse(x,y,SZ,SZ);
+  }
+  void printblue(){//blue-ish
+    fill(0,10,240);
+    ellipse(x,y,SZ,SZ);
+  }
+  void printgreen(){//green-ish
+    fill(0,240,180);
+    ellipse(x,y,SZ,SZ);
+  }
+  void run(){
+    aesthetic_random = random(0,19);
+    numFrames++;
+    if(aesthetic_random>17){
+    printred();
+    }else if(aesthetic_random>5 && aesthetic_random <18){
+    printblue();
+    }//end elseif
+    else{
+    printgreen();
+    }//end else
+    move();
+    bounce();
+    gravity();
+ }
+ void move(){
+  //in plain mathematical terms;
+  //move(ment) is dp/dt ---> change in position
+  //thus, in the src speed is expressed along X & Y axis
+  x+=speedInX;
+  y+=speedInY;
+ }
+ void bounce(){//negate velocity if edge of frame is reached by object
+    if(x>width){
+    speedInX = speedInX*-1;
+    stroke(1);
+    }
+    if(x<0){
+    speedInX = speedInX*-1;
+    }
+    if(y>height){
+    speedInY = speedInY*-1;
+    }
+    if(y<0){
+    speedInY = speedInY*-1;
+    }
+ }//end bounce
+ void gravity(){
+   //gravity = dv/dt....
+   //or....the change in speed with respect to time
+   //in cg terms, the speed along the y axis changes inside draw();
+   speedInY += 0.8;
+ }
+}//end class Ball
