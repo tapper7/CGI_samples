@@ -1,28 +1,32 @@
 /**
- * display user defined strings
+ * strings falling
  * The text() function is used for writing words to the screen.
  * The letters can be aligned left, center, or right with the 
  * textAlign() function. 
  */
-  
+ 
+float fallspeed = 1.03;
 PFont f;
 float dy = 100.0;
-float dx = 10.0;
-void setup() {
-  size(640, 640);
-  // Create the font
+float dx = 36.0;
+
+void setup(){
+ size(640, 1200);
+ //send avail font to console for testing
   printArray(PFont.list());
-  f = createFont("ZapfDingbatsITC", 36);
-  textFont(f);
+  f = createFont("ZapfDingbatsITC", 24);
+  textFont(f); 
 }
-void draw() {
+
+void draw(){
   background(0);
-  drawType(dx, dy);
-  dy = dy + 12;//drops the defined text
+  drawType(dx,dy);
+  dy *= fallspeed;//drops the defined text as defined by differential fallspeed
 }
-void drawType(float x, float y) {
-  //text("ichiknees", x, y);
-  text("nigger", x, y);//or some other offensive placeholder string
-  //text("sans yer moms box", x, y);
+
+void drawType(float x, float y){
+  text("Bush did 9/11", x, y);
+  text("cunty cunt cunt", 360, dy);
   //text("shit cum fuk tart", x, y);
+  //etc....
 }
